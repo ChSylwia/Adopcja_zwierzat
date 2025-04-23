@@ -1,0 +1,45 @@
+﻿@model Adopcja_2024.Models.Ogloszenie
+
+@{
+    ViewData["Title"] = "Dodaj ogłoszenie";
+}
+<div class="div_dodaj_z">
+<h1>Dodaj ogłoszenie</h1>
+
+<form enctype="multipart/form-data" asp-controller="Ogloszenia" asp-action="Create" method="POST">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="tytul" class="control-label"></label>
+        <input asp-for="tytul" class="form-control" />
+        <span asp-validation-for="tytul" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="data" class="control-label"></label>
+        <input asp-for="data" type="datetime-local" class="form-control" />
+        <span asp-validation-for="data" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="opis" class="control-label"></label>
+        <textarea asp-for="opis" class="form-control"></textarea>
+        <span asp-validation-for="opis" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="zdjecie" class="control-label"></label>
+        <input asp-for="zdjecie" type="file" class="form-control" />
+        <span asp-validation-for="zdjecie" class="text-danger"></span>
+    </div>
+
+    <div class="dodaj">
+        <input type="submit" value="Dodaj ogłoszenie" asp-action="Create" asp-controller="Ogloszenia" />
+    </div>
+</form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

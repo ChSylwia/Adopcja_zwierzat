@@ -1,0 +1,83 @@
+﻿div.srodek {
+    min-height: 600px;
+}
+
+.dane_Zwierzak,
+.dane_ogl {
+    width: 90%;
+    height: 80%;
+}
+
+.zwierzak_zdj,
+.ogl_zdj {
+    max-height:500px;
+    max-width:800px;
+    position: relative;
+    top: 30px;
+    z-index: 2;
+    background-color: #d1f4fa;
+    border-radius: 20px;
+}
+.toLower {
+    text-transform:lowercase;
+}
+.info {
+    height: 60%;
+    min-height: 400px;
+    background-color: #fff;
+    list-style: none;
+    z-index: 1;
+    border-radius: 20px;
+    padding-top: 50px;
+}
+.srodek ul.lista_kontakt {
+    align-items: flex-end;
+}
+ul.lista_info,
+ul.lista_kontakt {
+    width: 100%;
+    margin: 30px 5px;
+}
+
+    ul.lista_info li {
+        width: 80%;
+        align-items: flex-start;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        gap: 10px;
+        margin: 10px 5px;
+        text-align: left;
+    }
+
+    ul.lista_kontakt li {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        list-style: none;
+        gap: 10px;
+        margin: 10px 20px;
+        text-align: right;
+    }
+
+ul img {
+    display: block;
+    width: 30px;
+}
+
+.tytul {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.opis_ogl {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+p{
+    margin-bottom:0;
+}
+   ul.lista_info p.prezentacja_opiekuna{
+        text-align:center;
+    }

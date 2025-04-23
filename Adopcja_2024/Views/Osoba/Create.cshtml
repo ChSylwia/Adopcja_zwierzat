@@ -1,0 +1,100 @@
+﻿@model Adopcja_2024.Models.OsobaRejestracja
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="div_dodaj_z">
+    <h1>Zarejestruj się</h1>
+<form enctype="multipart/form-data" asp-action="Create" method="post">
+    <label asp-for="imie">Imie:</label>
+    <input asp-for="imie" />
+    <span asp-validation-for="imie"></span>
+
+    <label asp-for="nazwisko">Nazwisko:</label>
+    <input asp-for="nazwisko" />
+    <span asp-validation-for="nazwisko"></span>
+
+    <label asp-for="czy_kobieta">Płeć:</label>
+    <select asp-for="czy_kobieta">
+        <option value="true" selected="selected">Kobieta</option>
+        <option value="false">Mężczyzna</option>
+    </select>
+
+    <label asp-for="nazwa_miasta">Miasto:</label>
+    <input asp-for="nazwa_miasta" />
+    <span asp-validation-for="nazwa_miasta"></span>
+
+    <label asp-for="nr_telefonu">Telefon:</label>
+    <input asp-for="nr_telefonu" />
+    <span asp-validation-for="nr_telefonu"></span>
+
+    <label asp-for="email">E-mail:</label>
+    <input asp-for="email" />
+    <span asp-validation-for="email"></span>
+
+    <label asp-for="haslo">Hasło:</label>
+    <input asp-for="haslo" />
+    <span asp-validation-for="haslo"></span>
+
+    <label asp-for="czy_instytucja">Kod pocztowy:</label>
+    <input id="checkbox_instytucja" type="checkbox" asp-for="czy_instytucja" /> Jestem instytucją
+    <span asp-validation-for="czy_instytucja"></span>
+
+    <div id="formularz_instytucja" style="display: none;">
+        <label asp-for="nazwa_instytucji">Nazwa instytucji:</label>
+        <input asp-for="nazwa_instytucji" />
+        <span asp-validation-for="nazwa_instytucji"></span>
+
+        <label asp-for="miasto">Miasto:</label>
+        <input asp-for="miasto" />
+        <span asp-validation-for="miasto"></span>
+
+        <label asp-for="kod_pocztowy">Kod pocztowy:</label>
+        <input asp-for="kod_pocztowy" />
+        <span asp-validation-for="kod_pocztowy"></span>
+
+        <label asp-for="ulica">Ulica:</label>
+        <input asp-for="ulica" />
+        <span asp-validation-for="ulica"></span>
+
+        <label asp-for="nr_domu">Numer domu:</label>
+        <input asp-for="nr_domu" />
+        <span asp-validation-for="nr_domu"></span>
+
+        <label asp-for="nr_lokalu">Numer mieszkania:</label>
+        <input asp-for="nr_lokalu" />
+        <span asp-validation-for="nr_lokalu"></span>
+
+        <label asp-for="nr_telefonu_instytucja">Telefon:</label>
+        <input asp-for="nr_telefonu_instytucja" />
+        <span asp-validation-for="nr_telefonu_instytucja"></span>
+
+        <label asp-for="email_instytucja">E-mail:</label>
+        <input asp-for="email_instytucja" />
+        <span asp-validation-for="email_instytucja"></span>
+    </div>
+
+    <input type="submit" value="Załóż konto">
+    <p>Masz już konto? <a asp-action="Index" asp-controller="Login">Zaloguj się</a></p>
+</form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Nasłuchiwanie zmian w checkboxie
+        document.getElementById("checkbox_instytucja").addEventListener("change", function () {
+            var institutionDetailsDiv = document.getElementById("formularz_instytucja");
+
+            // Jeśli checkbox jest zaznaczony, pokaż div
+            if (this.checked) {
+                institutionDetailsDiv.style.display = "block";
+            } else {
+                // Jeśli checkbox jest odznaczony, ukryj div
+                institutionDetailsDiv.style.display = "none";
+            }
+        });
+    </script>
+}

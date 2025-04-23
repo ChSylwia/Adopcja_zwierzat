@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AdopcjaMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/index_style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style_dane.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style_ogloszenia.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style_adopcja.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style_form.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style_uzytkownik.css" asp-append-version="true" />
+    <!--x<link rel="stylesheet" href="~/AdopcjaMVC.styles.css" asp-append-version="true" />-->
+    <link rel="icon" type="image/x-icon" href="~/img/logo.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div class="pasek_gorny">
+
+        <div class="menu">
+            <a class="link_strona_glowna" asp-action="Index" asp-controller="Home">
+                <img class="logo" src="~/img/logo.svg" />
+            </a>
+            <ul>
+                <a asp-controller="Zwierzak" asp-action="Index">
+                <li>Adopcja</li>
+                </a>
+                <a asp-controller="Ogloszenia" asp-action="Index">
+                <li>Ogłoszenia</li></a>
+                @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"] != null)
+                {
+                    <a asp-controller="Osoba" asp-action="Index" asp-route-id="@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"]">
+                    <li>@HttpContextAccessor.HttpContext.Request.Cookies["CookieUserEmail"]</li>
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Login" asp-action="Index">
+                    <li>Zaloguj się</li>
+                    </a>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="main_container">
+        @RenderBody()
+    </div>
+
+    <div class="stopka">
+        <p>Copyright © 2023 Wszelkie Prawa Zastrzeżone.</p>
+        <ul>
+            <li>
+                <a href="#"><img src="~/img/facebook.svg" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="~/img/twitter.svg" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="~/img/instagram.svg" /></a>
+            </li>
+        </ul>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

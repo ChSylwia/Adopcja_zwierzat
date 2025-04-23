@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Adopcja_2024.Models.Ogloszenie>
+
+@{
+    ViewData["Title"] = "Ogloszenia";
+}
+
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"] != null)
+{
+    <div class="przycisk_kontener">
+        <a class="przycisk_funkcyjny" asp-action="Create" asp-controller="Ogloszenia">
+            <p>Dodaj ogłoszenie</p>
+        </a>
+    </div>
+}
+@if (Model == null || !Model.Any())
+{
+    <p>Brak ogłoszeń do wyświetlenia.</p>
+}
+<div class="srodek srodek_adopcja">
+
+    <img class="lapki4" src="img/lapki4.svg" />
+    @foreach (var item in Model)
+    {
+
+        <div class="ogloszenie">
+
+            @if (item.zdjecie != null)
+            {
+                <img class="zdj_ogloszenie" src="data:image/jpeg;base64,@Convert.ToBase64String(item.zdjecie)" alt="Zdjęcie" />
+            }
+            else
+            {
+                <img class="zdj_ogloszenie" src="img/lapki3.svg" />
+            }
+
+            <div class="tytul">
+                <p>@Html.DisplayFor(modelItem => item.tytul)</p>
+            </div>
+            <div class="krotki_opis">
+                <p>@Html.DisplayFor(modelItem => item.opis)...</p>
+            </div>
+            <div class="przycisk_kontener">
+                <a class="przycisk_funkcyjny" asp-action="Details" asp-controller="Ogloszenia" asp-route-id="@item.id_ogloszenie">
+                    <p>Zobacz więcej</p>
+                </a>
+            </div>
+        </div>
+
+    }
+
+</div>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}

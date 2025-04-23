@@ -1,0 +1,115 @@
+﻿.srodek_adopcja {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.filtry {
+    display: flex;
+    float:left;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px; 
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+    .filtry label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px; 
+        font-size: 0.85em;
+        color: #333;
+    }
+
+    .filtry input[type="checkbox"] {
+        width: 15px;
+        height: 15px;
+        margin-right: 8px; 
+    }
+select {
+    width: 200px;
+    border-radius: 5px;
+    font-family: quicksand;
+    font-size: 0.8em;
+    text-align: center;
+    background-color: #89c4e1;
+    color: white;
+    border: none;
+}
+
+div.zwierzak {
+    position: relative;
+    float: left;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 400px;
+    min-height: 300px;
+    margin: 2vh 2vw;
+    z-index: 1;
+}
+
+img.zdj_zwierzak {
+    width: 400px;
+    max-height: 200px;
+    background-color: #d1f4fa;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    object-fit: cover; 
+    object-position: center;
+}
+
+div.imie {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 40vh;
+    margin: 1vh;
+}
+
+    div.imie img {
+        width: 25px;
+    }
+
+    div.imie p {
+        font-weight: bold;
+    }
+
+div.krotki_opis {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    
+}
+
+    div.krotki_opis ul {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        padding: 0;
+    }
+
+    div.krotki_opis li {
+        float: left;
+        width: calc((100% / 3) - 5px);
+        list-style: none;
+        margin-right: 5px;
+    }
+
+        div.krotki_opis li img {
+            float: left;
+            width: 25px;
+            margin-right: 5px;
+        }
+
+        div.krotki_opis li p {
+            float: left;
+            width: 5vw;
+        }

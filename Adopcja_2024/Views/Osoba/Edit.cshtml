@@ -1,0 +1,111 @@
+﻿@model Adopcja_2024.Models.Osoba
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edycja osoby</h1>
+<hr />
+<div class="div_dodaj_z">
+    
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_osoba" />
+            <div class="form-group">
+                <label asp-for="imie" class="control-label"></label>
+                <input asp-for="imie" class="form-control" />
+                <span asp-validation-for="imie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nazwisko" class="control-label"></label>
+                <input asp-for="nazwisko" class="form-control" />
+                <span asp-validation-for="nazwisko" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="czy_kobieta" /> @Html.DisplayNameFor(model => model.czy_kobieta)
+                </label>
+            </div>
+            <div class="form-group">
+                @Html.HiddenFor(model => model.Miasto.id_miasto)
+
+                <label asp-for="Miasto.nazwa" class="control-label"></label>
+                <input asp-for="Miasto.nazwa" class="form-control" />
+                <span asp-validation-for="Miasto.nazwa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nr_telefonu" class="control-label"></label>
+                <input asp-for="nr_telefonu" class="form-control" />
+                <span asp-validation-for="nr_telefonu" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="haslo" class="control-label"></label>
+                <input asp-for="haslo" class="form-control" />
+                <span asp-validation-for="haslo" class="text-danger"></span>
+            </div>
+
+
+        @if (Model.Instytucja != null)
+        {
+            <p>Dane instytucji</p>
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.Instytucja.id_instytucja)
+
+                <label asp-for="Instytucja.nazwa" class="control-label"></label>
+                <input asp-for="Instytucja.nazwa" class="form-control" />
+                <span asp-validation-for="Instytucja.nazwa" class="text-danger"></span>
+
+                @Html.HiddenFor(model => model.Instytucja.Miasto.id_miasto)
+
+                <label asp-for="Instytucja.Miasto.nazwa" class="control-label"></label>
+                <input asp-for="Instytucja.Miasto.nazwa" class="form-control" />
+                <span asp-validation-for="Instytucja.Miasto.nazwa" class="text-danger"></span>
+
+                <label asp-for="Instytucja.ulica" class="control-label"></label>
+                <input asp-for="Instytucja.ulica" class="form-control" />
+                <span asp-validation-for="Instytucja.ulica" class="text-danger"></span>
+
+                <label asp-for="Instytucja.nr_domu" class="control-label"></label>
+                <input asp-for="Instytucja.nr_domu" class="form-control" />
+                <span asp-validation-for="Instytucja.nr_domu" class="text-danger"></span>
+
+                <label asp-for="Instytucja.nr_lokalu" class="control-label"></label>
+                <input asp-for="Instytucja.nr_lokalu" class="form-control" />
+                <span asp-validation-for="Instytucja.nr_lokalu" class="text-danger"></span>
+
+                <label asp-for="Instytucja.kod_pocztowy" class="control-label"></label>
+                <input asp-for="Instytucja.kod_pocztowy" class="form-control" />
+                <span asp-validation-for="Instytucja.kod_pocztowy" class="text-danger"></span>
+
+                <label asp-for="Instytucja.nr_telefonu" class="control-label"></label>
+                <input asp-for="Instytucja.nr_telefonu" class="form-control" />
+                <span asp-validation-for="Instytucja.nr_telefonu" class="text-danger"></span>
+
+                <label asp-for="Instytucja.e_mail" class="control-label"></label>
+                <input asp-for="Instytucja.e_mail" class="form-control" />
+                <span asp-validation-for="Instytucja.e_mail" class="text-danger"></span>
+            </div>
+        }
+            <div class="form-group">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+
+<div>
+    <a asp-action="Index">Wróć do profilu</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

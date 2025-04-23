@@ -1,0 +1,116 @@
+﻿@model Adopcja_2024.Models.ZwierzakDodawanie
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"] != null)
+{
+    <div class="przycisk_kontener">
+        <a class="przycisk_funkcyjny" asp-action="Create" asp-controller="Zwierzak">
+            <p>Dodaj zwierzaka</p>
+        </a>
+    </div>
+}
+
+<div class="srodek_adopcja">
+    <div class="filtry">
+        <form enctype="multipart/form-data" asp-controller="Zwierzak" asp-action="Index" method="GET">
+            <div>
+                <label>Płeć:</label>
+                <div>
+                    <label>
+                        <input type="checkbox" name="plec" value="false" @(HttpContextAccessor.HttpContext.Request.Query["plec"].Contains("false") ? "checked" : "") />
+                        Samiec
+                    </label>
+                    <label>
+                        <input type="checkbox" name="plec" value="true" @(HttpContextAccessor.HttpContext.Request.Query["plec"].Contains("true") ? "checked" : "") />
+                        Samica
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <label>Wiek:</label>
+                @foreach (var wiek in Model.wiek)
+                {
+                    <label>
+                        <input type="checkbox" name="wiek" value="@wiek.id_wiek" @(HttpContextAccessor.HttpContext.Request.Query["wiek"].Contains(wiek.id_wiek.ToString()) ? "checked" : "") />
+                        @wiek.wiek
+                    </label>
+                }
+            </div>
+
+            <div>
+                <label>Gatunek:</label>
+                @foreach (var gatunek in Model.gatunek)
+                {
+                    <label>
+                        <input type="checkbox" name="gatunek" value="@gatunek.id_gatunek" @(HttpContextAccessor.HttpContext.Request.Query["gatunek"].Contains(gatunek.id_gatunek.ToString()) ? "checked" : "") />
+                        @gatunek.nazwa
+                    </label>
+                }
+            </div>
+
+            <button class="przycisk_filtry" type="submit">Sortuj</button>
+        </form>
+    </div>
+
+    <div class="zwierzaki">
+        @foreach (var item in Model.zwierzaki)
+        {
+            <div class="zwierzak">
+                @if (item.zdjecie != null)
+                {
+                    <img class="zdj_zwierzak" src="data:image/jpeg;base64,@Convert.ToBase64String(item.zdjecie)" alt="Zdjęcie" />
+                }
+                else
+                {
+                    <img class="zdj_zwierzak" src="~/img/lapki3.svg" />
+                }
+
+                <div class="imie">
+                    <img src="img/lapa.svg" />
+                    <p>@item.imie</p>
+                </div>
+
+                <div class="krotki_opis">
+                    <ul>
+                        <li>
+                            <img src="~/img/plcie.svg" />
+                            @if (item.czy_samiczka)
+                            {
+                                <p>samiczka</p>
+                            }
+                            else
+                            {
+                                <p>samiec</p>
+                            }
+                        </li>
+                        <li>
+                            <img src="img/wiek.svg" />
+                            <p class="toLower">@item.Wiek.wiek</p>
+                        </li>
+                        <li>
+                            <img src="img/gatunek.svg" />
+                            <p class="toLower">@item.Rasa.Gatunek.nazwa</p>
+                        </li>
+                        <li>
+                            <img src="img/lapa.svg" />
+                            <p class="toLower">@item.Rasa.nazwa</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="przycisk_div">
+                    <a asp-action="Details" asp-controller="Zwierzak" asp-route-id="@item.id_zwierzak">
+                        <p>Dowiedz się więcej</p>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

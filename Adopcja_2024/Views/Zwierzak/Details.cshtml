@@ -1,0 +1,86 @@
+﻿@model Adopcja_2024.Models.ZwierzakRezerwacja
+
+@{
+    ViewData["Title"] = "Szczegóły Zwierzaka";
+    var errorMessage = ViewBag.ErrorMessage as string;
+}
+
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">
+        @errorMessage
+    </div>
+}
+<div class="srodek_dane srodek">
+    <img class="lapki4" src="~/img/lapki4.svg" />
+
+    <div class="dane_Zwierzak">
+        <div class="zdj_zwierzak">
+            @if (Model.Zwierzak.zdjecie != null)
+            {
+                <img class="zwierzak_zdj" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Zwierzak.zdjecie)" alt="Zdjęcie" />
+            }
+            else
+            {
+                <img class="zwierzak_zdj" src="~/img/lapki3.svg" alt="Domyślne zdjęcie" />
+            }
+        </div>
+        <div class="info">
+            <p class="powitanie">Cześć, jestem <span>@Model.Zwierzak.imie</span> i szukam domu</p>
+            <ul class="lista_info">
+                <li>
+                    <img src="~/img/lapa.svg" />
+                    <p>Jestem <span>@(Model.Zwierzak.czy_samiczka ? "samiczką" : "samcem")</span></p>
+                </li>
+                <li>
+                    <img src="~/img/lapa.svg" />
+                    <p>Mówią, że jestem spoko <span class="toLower">@Model.Zwierzak.Rasa.Gatunek.nazwa</span>, rasy <span class="toLower">@Model.Zwierzak.Rasa.nazwa</span>, w wieku <span class="toLower">@Model.Zwierzak.Wiek.wiek</span>.</p>
+                </li>
+                <li>
+                    <img src="~/img/lapa.svg" />
+                    <p>Mój krótki opis: <span>@Model.Zwierzak.opis</span></p>
+                </li>
+            </ul>
+
+            <ul class="lista_kontakt">
+                <li>
+                    <p>
+                        @Html.ActionLink("Skontaktuj się z moim opiekunem", "Details", "Osoba", new { id = Model.Zwierzak.id_osoby })
+                    </p>
+                    <img src="~/img/telefon.svg" />
+                </li>
+                @if (HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"] != null)
+                {
+                    int userId = Convert.ToInt32(HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"]);
+                    bool isReserved = Model.Rezerwacja.Any(r => r.id_osoba == userId);
+
+                    <li>
+                        <div class="dodaj">
+                            @if (!isReserved)
+                            {
+                                <a asp-action="Rezerwacja" asp-controller="Zwierzak"
+                                   asp-route-id_osoba="@userId"
+                                   asp-route-id_zwierzak="@Model.Zwierzak.id_zwierzak">
+                                    <p>Zarezerwuj mnie</p>
+                                    <img src="~/img/serduszko.svg" />
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-action="RezerwacjaUsun" asp-controller="Uzytkownik"
+                                   asp-route-id_osoba="@userId"
+                                   asp-route-id_zwierzak="@Model.Zwierzak.id_zwierzak">
+                                    <p>Zarezerwowany</p>
+                                    <img src="~/img/serduszko.svg" />
+                                </a>
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <img class="lapki3" src="~/img/lapki3.svg" />
+</div>

@@ -1,0 +1,90 @@
+﻿@model Adopcja_2024.Models.ZwierzakEdit
+
+<div class="div_dodaj_z">
+    <h1>Edycja zwierzaka</h1>
+    <hr />
+    <form enctype="multipart/form-data" asp-controller="Zwierzak" asp-action="Edit" method="POST">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input asp-for="@Model.Zwierzak.id_zwierzak" type="hidden" />
+
+        <label asp-for="@Model.Zwierzak.imie"></label>
+        <input asp-for="@Model.Zwierzak.imie" />
+        <span asp-validation-for="@Model.Zwierzak.imie"></span>
+
+        <label asp-for="@Model.Zwierzak.czy_samiczka"></label>
+        <select asp-for="@Model.Zwierzak.czy_samiczka">
+            <option value="False">Samiec</option>
+            <option value="True">Samica</option>
+        </select>
+
+        <label asp-for="@Model.Zwierzak.id_wiek"></label>
+        <select asp-for="@Model.Zwierzak.id_wiek">
+            @foreach (var item in Model.Wiek)
+            {
+                @if (item.id_wiek == @Model.Zwierzak.id_wiek)
+                {
+                    <option value="@item.id_wiek" selected="selected">@Html.DisplayFor(modelItem => item.wiek)</option>
+                }
+                else
+                {
+                    <option value="@item.id_wiek">@Html.DisplayFor(modelItem => item.wiek)</option>
+                }
+            }
+        </select>
+
+        <label asp-for="@Model.Zwierzak.id_wielkosc"></label>
+        <select asp-for="@Model.Zwierzak.id_wielkosc">
+            @foreach (var item in Model.Wielkosc)
+            {
+                @if (item.id_wielkosc == @Model.Zwierzak.id_wielkosc)
+                {
+                    <option value="@item.id_wielkosc" selected="selected">@Html.DisplayFor(modelItem => item.wielkosc)</option>
+                }
+                else
+                {
+                    <option value="@item.id_wielkosc">@Html.DisplayFor(modelItem => item.wielkosc)</option>
+                }
+            }
+        </select>
+
+        <label asp-for="@Model.Zwierzak.id_rasa"></label>
+        <select asp-for="@Model.Zwierzak.id_rasa">
+            @foreach (var gatunek in Model.Gatunek)
+            {
+                <optgroup label="@gatunek.nazwa">
+                    @foreach (var rasa in gatunek.Rasa)
+                    {
+                        @if (rasa.id_rasa == @Model.Zwierzak.id_rasa)
+                        {
+                            <option value="@rasa.id_rasa" selected="selected">@Html.DisplayFor(modelItem => rasa.nazwa)</option>
+                        }
+                        else
+                        {
+                            <option value="@rasa.id_rasa">@Html.DisplayFor(modelItem => rasa.nazwa)</option>
+                        }   
+                    }
+                </optgroup>
+            }
+        </select>
+
+
+        <label asp-for="@Model.Zwierzak.opis"></label>
+        <input asp-for="@Model.Zwierzak.opis" />
+        <span asp-validation-for="@Model.Zwierzak.opis"></span>
+
+        <label asp-for="@Model.Zwierzak.zdjecie">Wybierz zdjęcie:</label>
+        <input type="file" name="zdjecie" id="zdjecie"/>
+        <span asp-validation-for="@Model.Zwierzak.zdjecie"></span>
+
+        <div class="dodaj">
+            <input type="submit" value="Zapisz" asp-action="Edit" asp-controller="Zwierzak" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

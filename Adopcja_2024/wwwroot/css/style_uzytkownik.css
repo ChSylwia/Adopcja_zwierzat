@@ -1,0 +1,79 @@
+﻿.menu_user {
+    width: 300px;
+    min-height: 800px;
+    background-color: #fff;
+    padding-top: 30px;
+    align-self: stretch;
+}
+
+.srodek ul a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    text-decoration: none;
+    color: #005792;
+}
+
+.srodek ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+}
+
+    .srodek ul a {
+        margin: 10px 0 10px 0;
+    }
+
+        .srodek ul a li {
+            text-decoration: none;
+            list-style-type: none;
+            font-size: 25px;
+        }
+
+        .srodek ul a img {
+            height: 25px;
+            margin-right: 20px;
+        }
+
+.prawy {
+    width: calc(100% - 300px);
+    min-height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+    .prawy header {
+        width: 100%;
+        display: flex;
+    }
+
+        .prawy header h2 {
+            margin: 20px;
+        }
+
+    .prawy .ogloszenia {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+div .prawy .zwierzaki{
+    width: 100%;
+}
+
+.przycisk_div .ogl_usun {
+    background-color: #EC4949;
+}
+
+dane_u {
+    text-align: center;
+    width: 100%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}

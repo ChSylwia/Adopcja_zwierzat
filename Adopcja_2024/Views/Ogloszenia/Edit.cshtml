@@ -1,0 +1,38 @@
+﻿@model Adopcja_2024.Models.Ogloszenie
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="div_dodaj_z">
+<h1>Edycja ogłoszenia</h1>
+<hr />
+<form enctype="multipart/form-data" asp-controller="Ogloszenia" asp-action="Edit" method="POST">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="id_ogloszenie" value="@Model.id_ogloszenie" hidden/>
+
+    <label asp-for="tytul"></label>
+    <input asp-for="tytul" value="@Model.tytul"/>
+    <span asp-validation-for="tytul"></span>
+
+    <label asp-for="data"></label>
+    <input asp-for="data" asp-format="{0:yyyy-MM-dd HH:mm:ss}"  value="@Model.data.ToString("yyyy-MM-dd HH:mm:ss")" />
+    <span asp-validation-for="data"></span>
+
+    <label asp-for="opis"></label>
+    <textarea asp-for="opis" value="@Model.opis"></textarea>
+    <span asp-validation-for="opis"></span>
+
+    <label asp-for="@Model.zdjecie">Wybierz zdjęcie:</label>
+    <input type="file" asp-for="@Model.zdjecie" />
+    <span asp-validation-for="zdjecie"></span>
+
+    <div class="dodaj">
+        <input type="submit" value="Zapisz ogłoszenie" asp-action="Edit" asp-controller="Ogloszenia" />
+    </div>
+</form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

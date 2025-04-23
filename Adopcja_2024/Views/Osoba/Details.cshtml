@@ -1,0 +1,27 @@
+﻿@model Adopcja_2024.Models.Osoba
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="srodek_dane srodek">
+    <div class="info">
+        <ul class="lista_info">
+            <p class="prezentacja_opiekuna">Oto dane mojego opiekuna:</p>
+
+            <li>
+                <img src="~/img/lapa.svg" />
+                <p>@Model.imie @Model.nazwisko </p>
+            </li>
+            <li>
+                <img src="~/img/lapa.svg" />
+                <p>Nr tel: @Model.nr_telefonu</p>
+            </li>
+            <li>
+                <img src="~/img/lapa.svg" />
+                <p>E-mail: @Model.email</p>
+            </li>
+        </ul>
+    </div>
+</div>

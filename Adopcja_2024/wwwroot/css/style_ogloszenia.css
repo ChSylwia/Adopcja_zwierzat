@@ -1,0 +1,97 @@
+﻿.przycisk_kontener {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.przycisk_funkcyjny {
+    padding: 10px;
+    background-color: #005792;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+div .przycisk_funkcyjny p {
+    margin: 0;
+    padding: 0;
+}
+
+.srodek_adopcja {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color:black;
+}
+div.ogloszenie {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    float: left;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 400px;
+    min-height: 300px;
+    margin: 2vh 2vw;
+    z-index: 1;
+}
+
+img.zdj_ogloszenie {
+    width: 400px;
+    max-height: 200px;
+    background-color: #d1f4fa;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+
+div.tytul {
+    align-items: flex-start;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+}
+
+    div.tytul p {
+        max-width:90%;
+        color: #005792;
+        font-weight: bold;
+        text-align:left;
+    }
+
+div.krotki_opis {
+    text-align: left;
+    font-size: 0.8em;
+    margin: 1vh;
+}
+
+.przycisk_div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 10px 10px 0;
+    padding:5px;
+}
+
+.ogl_wiecej {
+    width: 150px;
+    padding: 10px;
+    font-size: 0.8em;
+    background-color: #005792;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+}

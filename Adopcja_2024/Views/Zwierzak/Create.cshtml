@@ -1,0 +1,65 @@
+﻿@model Adopcja_2024.Models.ZwierzakDodawanie
+
+<div class="div_dodaj_z">
+    <p>Dodawanie zwierzaka</p>
+    <form enctype="multipart/form-data" asp-controller="Zwierzak" asp-action="Create" method="POST">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <label asp-for="zwierzaki.First().imie"></label>
+        <input asp-for="zwierzaki.First().imie" />
+        <span asp-validation-for="zwierzaki.First().imie"></span>
+
+        <label asp-for="zwierzaki.First().czy_samiczka"></label>
+        <select asp-for="zwierzaki.First().czy_samiczka">
+            <option value="False">Samiec</option>
+            <option value="True">Samica</option>
+        </select>
+
+        <label asp-for="zwierzaki.First().id_wiek"></label>
+        <select asp-for="zwierzaki.First().id_wiek">
+            @foreach (var item in Model.wiek)
+            {
+                <option value="@item.id_wiek">@item.wiek</option>
+            }
+        </select>
+
+        <label asp-for="zwierzaki.First().id_wielkosc"></label>
+        <select asp-for="zwierzaki.First().id_wielkosc">
+            @foreach (var item in Model.wielkosc)
+            {
+                <option value="@item.id_wielkosc">@item.wielkosc</option>
+            }
+        </select>
+
+        <label asp-for="zwierzaki.First().id_rasa"></label>
+        <select asp-for="zwierzaki.First().id_rasa">
+            @foreach (var gatunek in Model.gatunek)
+            {
+                <optgroup label="@gatunek.nazwa">
+                    @foreach (var rasa in gatunek.Rasa)
+                    {
+                        <option value="@rasa.id_rasa">@rasa.nazwa</option>
+                    }
+                </optgroup>
+            }
+        </select>
+
+        <label asp-for="zwierzaki.First().opis"></label>
+        <input asp-for="zwierzaki.First().opis" />
+        <span asp-validation-for="zwierzaki.First().opis"></span>
+
+        <label asp-for="zwierzaki.First().zdjecie">Wybierz zdjęcie:</label>
+        <input type="file" asp-for="zwierzaki.First().zdjecie" />
+        <span asp-validation-for="zwierzaki.First().zdjecie"></span>
+
+        <div class="dodaj">
+            <input type="submit" value="Dodaj zwierzaka" asp-action="Create" asp-controller="Zwierzak" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

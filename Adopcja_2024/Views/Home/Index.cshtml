@@ -1,0 +1,106 @@
+﻿@model Adopcja_2024.Models.ZwierzakOgloszenia
+@{
+    ViewData["Title"] = "Strona główna";
+}
+
+<div class="zdjecie_glowne">
+    <img src="img/mopsik.jpg"
+         alt="Zdjęcie zwierząt zachęcające do adopcji." />
+</div>
+
+<div class="adopcja_div">
+    <h1>Zwierzęta do Adopcji</h1>
+
+    <div class="zwierzaki">
+        @foreach (var item in Model.zwierzaki)
+        {
+            <div class="zwierzak">
+
+                @if (item.zdjecie != null)
+                {
+                    <img class="zdj_zwierzak" src="data:image/jpeg;base64,@Convert.ToBase64String(item.zdjecie)" alt="Zdjęcie" />
+                }
+                else
+                {
+                    <img class="zdj_zwierzak" src="~/img/lapki3.svg" />
+                }
+                <div class="imie">
+                    <img src="img/lapa.svg" />
+                    <p>@Html.DisplayFor(modelItem => item.imie)</p>
+                </div>
+                <div class="krotki_opis">
+                    <ul>
+                        <li>
+                            <img src="~/img/plcie.svg" />
+                            @if (item.czy_samiczka)
+                            {
+                                <p>samiczka</p>
+                            }
+                            else
+                            {
+                                <p>samiec</p>
+                            }
+
+
+                        </li>
+                        <li>
+                            <img src="img/wiek.svg" />
+                            <p class="toLower">@Html.DisplayFor(modelItem => item.Wiek.wiek)</p>
+                        </li>
+                        <li>
+                            <img src="img/lapa.svg" />
+                            <p class="toLower">@Html.DisplayFor(modelItem => item.Rasa.nazwa)</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="przycisk_div">
+
+                    <p>@Html.ActionLink("Dowiedz się więcej", "Details", "Zwierzak", new { id = @item.id_zwierzak })</p>
+
+                </div>
+
+
+            </div>
+        }
+    </div>
+
+
+    <a class="przycisk_wiecej" asp-action="Index" asp-controller="Zwierzak">
+        <p>Zobacz więcej</p>
+    </a>
+</div>
+
+<div class="ogloszenia_div">
+    <h1>Ogłoszenia</h1>
+    <div class="ogloszenia">
+        @foreach (var item in Model.ogloszenia)
+        {
+            <div class="ogloszenie">
+
+                @if (item.zdjecie != null)
+                {
+                    <img class="zdj_ogloszenie" src="data:image/jpeg;base64,@Convert.ToBase64String(item.zdjecie)" alt="Zdjęcie" />
+                }
+                else
+                {
+                    <img class="zdj_ogloszenie" src="img/lapki3.svg" />
+                }
+                <div class="tytul">
+                    <p>@Html.DisplayFor(modelItem => item.tytul)</p>
+                </div>
+                <div class="krotki_opis">
+                    <p>@Html.DisplayFor(modelItem => item.opis)...</p>
+                </div>
+                <div class="przycisk_div">
+
+                    <p>@Html.ActionLink("Zobacz więcej", "Details", "Ogloszenia", new { id = item.id_ogloszenie })</p>
+
+                </div>
+            </div>
+        }
+    </div>
+
+    <a class="przycisk_wiecej" asp-action="Index" asp-controller="Ogloszenia">
+        <p>Zobacz więcej</p>
+    </a>
+</div>

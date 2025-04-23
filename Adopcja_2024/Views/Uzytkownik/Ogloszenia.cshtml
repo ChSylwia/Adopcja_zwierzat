@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Adopcja_2024.Models.Ogloszenie>
+
+@{
+    ViewData["Title"] = "Logowanie";
+}
+
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+<div class="srodek">
+    <div class="menu_user">
+        <ul>
+            <a asp-controller="Osoba" asp-action="Index" asp-route-id="@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"]">
+                <img src="~/img/uzytkownik.svg" alt="Dane">
+            <li>Dane</li>
+            </a>
+            <a asp-controller="Uzytkownik" asp-action="Ogloszenia">
+                <img src="~/img/kalendarz.svg" alt="Ogłoszenia">
+            <li>Ogłoszenia</li>
+            </a>
+            <a asp-controller="Uzytkownik" asp-action="Zwierzaki">
+                <img src="~/img/logo.svg" alt="Zwierzęta">
+            <li>Zwierzęta</li>
+            </a>
+            <a asp-controller="Uzytkownik" asp-action="Rezerwacja">
+                <img src="~/img/serce.svg" alt="Rezerwacje">
+            <li>Rezerwacje</li>
+            </a>
+            <a asp-controller="Login" asp-action="Logout">
+                <img src="~/img/wyloguj.svg" alt="Wyloguj się">
+            <li>Wyloguj się</li>
+            </a>
+
+        </ul>
+    </div>
+
+    <div class="prawy">
+        <header>
+            <h2>Ogłoszenia</h2>
+        </header>
+
+        <div class="ogloszenia">
+            @foreach (var item in Model)
+            {
+
+                <div class="ogloszenie">
+
+                    @if (item.zdjecie != null)
+                    {
+                        <img class="zdj_ogloszenie" src="data:image/jpeg;base64,@Convert.ToBase64String(item.zdjecie)" alt="Zdjęcie" />
+                    }
+                    else
+                    {
+                        <img class="zdj_ogloszenie" src="~/img/lapki3.svg" />
+                    }
+                    <div class="tytul">
+                        <p>@Html.DisplayFor(modelItem => item.tytul)</p>
+                    </div>
+                    <div class="krotki_opis">
+                        <p>@Html.DisplayFor(modelItem => item.opis)...</p>
+                    </div>
+                    <div class="przycisk_kontener">
+                    </div>
+                    <div class="przycisk_div">
+                        <a class="ogl_wiecej" asp-controller="Ogloszenia" asp-action="Edit" asp-route-id="@item.id_ogloszenie"><p>Edytuj</p></a>
+                    </div>
+                    <div class="przycisk_div">
+                        <a class="ogl_wiecej ogl_usun" asp-controller="Ogloszenia" asp-action="Delete" asp-route-id="@item.id_ogloszenie"><p>Usuń</p></a>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

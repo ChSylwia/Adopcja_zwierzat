@@ -1,0 +1,71 @@
+﻿@model Adopcja_2024.Models.Osoba
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+<div class="srodek">
+    <div class="menu_user">
+        <ul>
+            <a asp-controller="Osoba" asp-action="Index" asp-route-id="@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"]">
+                <img src="~/img/uzytkownik.svg" alt="Dane">
+            <li>Dane</li>
+            </a>
+            <a asp-controller="Uzytkownik" asp-action="Ogloszenia">
+                <img src="~/img/kalendarz.svg" alt="Ogłoszenia">
+            <li>Ogłoszenia</li>
+            </a>
+            <a asp-controller="Uzytkownik" asp-action="Zwierzaki">
+                <img src="~/img/logo.svg" alt="Zwierzęta">
+            <li>Zwierzęta</li>
+            </a>
+            <a asp-controller="Uzytkownik" asp-action="Rezerwacja">
+                <img src="~/img/serce.svg" alt="Rezerwacje">
+            <li>Rezerwacje</li>
+            </a>
+            <a asp-controller="Login" asp-action="Logout">
+                <img src="~/img/wyloguj.svg" alt="Wyloguj się">
+            <li>Wyloguj się</li>
+            </a>
+
+        </ul>
+    </div>
+
+    <div class="prawy">
+        <div class="dane_u">
+            <h1>Dane użytkownika</h1>
+
+            <div class="podst_info">
+                <h1>Witaj, @Html.DisplayFor(modelItem => @Model.imie) @Html.DisplayFor(modelItem => @Model.nazwisko) !</h1>
+
+                <h2>Podstawowe informacje</h2>
+                <p>Miasto: @Html.DisplayFor(modelItem => @Model.Miasto.nazwa)</p>
+                <p>Email: @Html.DisplayFor(modelItem => @Model.email)</p>
+                <p>Telefon: @Html.DisplayFor(modelItem => @Model.nr_telefonu)</p>
+
+                @if(Model.Instytucja != null){
+                    <h2>Dane instytucji</h2>
+                    <p>Nazwa instytucji: @Html.DisplayFor(modelItem => @Model.Instytucja.nazwa)</p>
+                    <p>Adres: @Html.DisplayFor(modelItem => @Model.Instytucja.ulica) @Html.DisplayFor(modelItem => @Model.Instytucja.nr_domu) numer lokalu: @Html.DisplayFor(modelItem => @Model.Instytucja.nr_lokalu) @Html.DisplayFor(modelItem => @Model.Instytucja.Miasto.nazwa)</p>
+                    <p>e-mail: @Html.DisplayFor(modelItem => @Model.Instytucja.e_mail)</p>
+                    <p>numer telefonu: @Html.DisplayFor(modelItem => @Model.Instytucja.nr_telefonu)</p>
+                }
+            </div>
+            @using Microsoft.AspNetCore.Http;
+            @inject IHttpContextAccessor HttpContextAccessor
+
+            @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"] != null)
+            {
+                <div class="przycisk_kontener">
+                    <a class="przycisk_funkcyjny" asp-action="Edit" asp-controller="Osoba" asp-route-id="@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"]">
+                        <p>Edytuj dane</p>
+                    </a>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

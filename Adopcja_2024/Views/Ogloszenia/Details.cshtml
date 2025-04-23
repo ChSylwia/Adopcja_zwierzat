@@ -1,0 +1,45 @@
+﻿@model Adopcja_2024.Models.Ogloszenie
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="srodek_dane srodek">
+    <img class="lapki4" src="~/img/lapki4.svg" />
+
+    <div class="dane_ogl">
+        <div class="zdj_ogl">
+            @if (Model.zdjecie != null)
+            {
+                <img class="ogl_zdj" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.zdjecie)" alt="Zdjęcie" />
+            }
+            else
+            {
+                <img class="ogl_zdj" src="~/img/lapki3.svg" />
+            }
+        </div>
+        <div class="opis_ogl info">
+            <p class="tytul">@Html.DisplayFor(model => model.tytul)</p>
+            <ul class="lista_info">
+                Poniżej więcej informacji:
+                <li>
+                    <p>
+                        @Html.DisplayFor(model => model.opis)
+                    </p>
+                </li>
+                <li>
+                    <img src="~/img/wiek.svg" />
+                    <p>@Html.DisplayFor(model => model.data)</p>
+                </li>
+                @if (Model.Osoba?.Instytucja != null){
+                    <li>
+                        <img src="~/img/lapa.svg" />
+                        <p>Instytucja: @Model.Osoba.Instytucja.nazwa</p>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <img class="lapki3" src="~/img/lapki3.svg" />
+</div>

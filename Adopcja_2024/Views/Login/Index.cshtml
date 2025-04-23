@@ -1,0 +1,42 @@
+﻿@model Adopcja_2024.Models.Osoba
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Logowanie";
+    var message = ViewBag.SuccessMessage as string;
+}
+
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-success">
+        @message
+    </div>
+}
+<div class="srodek">
+    <form class="login_form" enctype="multipart/form-data" asp-controller="Login" asp-action="Index" method="POST">
+        <h2>Zaloguj się</h2>
+
+        <label asp-for="@Model.email">E-mail:</label>
+        <input asp-for="@Model.email" type="email">
+        <span asp-validation-for="@Model.email"></span>
+
+        <label asp-for="@Model.haslo">Hasło:</label>
+        <input asp-for="@Model.haslo" type="password">
+        <span asp-validation-for="@Model.haslo"></span>
+
+        <input type="submit" value="Zaloguj się" asp-action="Index" asp-controller="Login" />
+        <h2>Nie masz konta?</h2>
+        <a asp-controller="Osoba" asp-action="Create">Załóż konto</a>
+
+        @if (ViewData["Message"] != null)
+        {
+            string data = (string)ViewData["Message"];
+            <p>@data</p>
+        }
+    </form>
+
+</div>

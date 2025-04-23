@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Adopcja_2024.Models.Zwierzak>
+
+@{
+    ViewData["Title"] = "Rezerwacja";
+}
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+<div class="srodek">
+    <div class="menu_user">
+        <ul>
+            <a asp-controller="Osoba" asp-action="Index" asp-route-id="@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"]">
+                <img src="~/img/uzytkownik.svg" alt="Dane">
+            <li>Dane</li>
+            </a>
+            <a asp-controller="Uzytkownik" asp-action="Ogloszenia">
+                <img src="~/img/kalendarz.svg" alt="Ogłoszenia">
+            <li>Ogłoszenia</li>
+            </a>
+            <a asp-controller="Uzytkownik" asp-action="Zwierzaki">
+                <img src="~/img/logo.svg" alt="Zwierzęta">
+            <li>Zwierzęta</li>
+            </a>
+            <a asp-controller="Uzytkownik" asp-action="Rezerwacja">
+                <img src="~/img/serce.svg" alt="Rezerwacje">
+            <li>Rezerwacje</li>
+            </a>
+            <a asp-controller="Login" asp-action="Logout">
+                <img src="~/img/wyloguj.svg" alt="Wyloguj się">
+            <li>Wyloguj się</li>
+            </a>
+
+        </ul>
+    </div>
+    <div class="prawy">
+        <header>
+            <h2>Rezerwacje</h2>
+        </header>
+        <div>
+            @foreach (var item in Model)
+            {
+                <div class="zwierzak">
+
+
+                    @if (item.zdjecie != null)
+                    {
+                        <img class="zdj_zwierzak" src="data:image/jpeg;base64,@Convert.ToBase64String(item.zdjecie)" alt="Zdjęcie" />
+                    }
+                    else
+                    {
+                        <img class="zdj_zwierzak" src="~/img/lapki3.svg" />
+                    }
+                    <div class="imie">
+                        <img src="~/img/lapa.svg" />
+                        <p>@item.imie</p>
+                    </div>
+                    <div class="krotki_opis">
+                        <ul>
+                            <li>
+                                <img src="~/img/plcie.svg" />
+                                @if (item.czy_samiczka)
+                                {
+                                    <p>Samiczka</p>
+                                }
+                                else
+                                {
+                                    <p>Samiec</p>
+                                }
+                            </li>
+                            <li>
+                                <img src="~/img/wiek.svg" />
+                                <p>@item.Wiek.wiek</p>
+                            </li>
+                            <li>
+                                <img src="~/img/lapa.svg" />
+                                <p>@item.Rasa.nazwa</p>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="przycisk_div">
+                        <a asp-action="Details" asp-controller="Zwierzak" asp-route-id="@item.id_zwierzak">
+                            <p>Dowiedz się więcej</p>
+                        </a>
+                    </div>
+
+                    <div class="przycisk_div">
+                        <a asp-action="Details" asp-controller="Osoba" asp-route-id="@item.id_osoby">
+                            <p>Kontakt z właścicielem</p>
+                        </a>
+                    </div>
+
+                    <div class="przycisk_div">
+                        <a class="ogl_wiecej ogl_usun" asp-controller="Uzytkownik" asp-action="RezerwacjaUsun" asp-route-id_osoba="@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserID"]" asp-route-id_zwierzak="@item.id_zwierzak"><p>Usuń</p></a>
+                    </div>
+
+
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

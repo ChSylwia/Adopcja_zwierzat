@@ -1,0 +1,251 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Quicksand", sans-serif;
+    font-size: 24px;
+    background-color: #edf9fc;
+}
+
+div {
+    position: relative;
+    text-align: center;
+}
+
+    div.menu {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 10px;
+        width: 100%;
+        height: 5vw;
+        text-align: center;
+        text-transform: none;
+        border-bottom: solid 5px #89c4e1;
+    }
+
+        div.menu ul {
+            width: 60vw;
+            list-style: none;
+        }
+
+        div.menu li {
+            float: left;
+            line-height: 5vw;
+            width: calc((100% / 3));
+            transition: all 0.3s ease-in-out;
+        }
+
+img.logo {
+    position: absolute;
+    height: calc(5vw - 10px);
+    left: 0%;
+    margin: 5px 0 0 5px;
+}
+
+div.menu a {
+    color: #005792;
+    text-decoration: none;
+}
+
+div.menu li:hover {
+    font-size: 26px;
+    background-color: #89c4e1;
+    color: #edf9fc;
+}
+
+div.srodek {
+    position: relative;
+    text-align: center;
+    font-size: 0.9em;
+    width: 100%;
+    overflow: scroll;
+    min-height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img.lapki4,
+img.lapki3 {
+    position: absolute;
+    width: 16vh;
+}
+
+img.lapki4 {
+    position: fixed;
+    float: left;
+    top: 10%;
+    left: 0%;
+}
+
+img.lapki3 {
+    position: fixed;
+    float: left;
+    right: 0%;
+    bottom: 20%;
+}
+
+div.stopka {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 10vh;
+    background-color: #89c4e1;
+    width: 100%;
+}
+
+    div.stopka p {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 0.6em;
+        width: 50%;
+    }
+
+    div.stopka ul {
+        display: flex;
+        justify-content: flex-end;
+        list-style: none;
+        width: 50%;
+    }
+
+        div.stopka ul li {
+            float: right;
+            margin: 1vw;
+        }
+
+            div.stopka ul li img {
+                width: 25px;
+            }
+
+    div.stopka a {
+        color: #005792;
+        text-decoration: none;
+    }
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #edf9fc;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #89c4e1;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #005792;
+    }
+
+/*Logowanie*/
+.form_div {
+    width: 100%;
+    height: calc(100vh - 10vh - 5vh - 5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_form {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #89c4e1;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+    .login_form h2 {
+        font-size: 30px;
+        margin-top: 10px;
+    }
+
+        .login_form h2:first-child {
+            margin-bottom: 30px;
+        }
+
+    .login_form input {
+        width: 300px;
+        height: 40px;
+        font-size: 18px;
+        border: 2px solid #005792;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .login_form label {
+        width: 300px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .login_form input[type="submit"] {
+        height: 60px;
+        padding: 10px;
+        background-color: #005792;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        margin: 30px 0 30px 0;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .login_form a {
+        font-size: 16px;
+        text-decoration: none;
+        color: #005792;
+    }
+
+/*Rejestracja*/
+
+.formularz_rejestracyjny {
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #89c4e1;
+}
+
+    .formularz_rejestracyjny input {
+        width: 300px;
+        height: 40px;
+        font-size: 18px;
+        border: 2px solid #005792;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .formularz_rejestracyjny select {
+        width: 300px;
+        height: 40px;
+        font-size: 18px;
+        border: 2px solid #005792;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .formularz_rejestracyjny label {
+        width: 300px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .formularz_rejestracyjny input[type="submit"] {
+        height: 60px;
+        padding: 10px;
+        background-color: #005792;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        margin: 30px 0 30px 0;
+        font-weight: bold;
+        cursor: pointer;
+    }
